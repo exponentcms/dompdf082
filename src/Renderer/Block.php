@@ -41,7 +41,7 @@ class Block extends AbstractRenderer
         }
 
         // Handle anchors & links
-        if ($node->nodeName === "a" && $href = $node->getAttribute("href")) {
+        if ($node->nodeName === "a" && $href = $node->getAttribute("href") && !DOMPDF_DISABLE_LINKS) {
             $href = Helpers::build_url($this->_dompdf->getProtocol(), $this->_dompdf->getBaseHost(), $this->_dompdf->getBasePath(), $href);
             $this->_canvas->add_link($href, $x, $y, (float)$w, (float)$h);
         }
